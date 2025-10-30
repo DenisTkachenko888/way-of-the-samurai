@@ -1,0 +1,31 @@
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS / file manager junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE configs
+.vscode/
+.idea/
+
+# screenshots / temp exports / recordings
+*.bmp
+*.png
+*.jpg
+*.gif
+*.mp4
+
+# pytest / coverage (на будущее)
+.coverage
+.pytest_cache/
+htmlcov/
