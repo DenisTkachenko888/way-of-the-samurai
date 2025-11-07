@@ -25,7 +25,10 @@ desktop.ini
 *.gif
 *.mp4
 
-# pytest / coverage (на будущее)
+# pytest / coverage 
 .coverage
 .pytest_cache/
 htmlcov/
+
+!assets/docs/
+!assets/docs/*.gif
