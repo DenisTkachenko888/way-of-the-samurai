@@ -7,7 +7,7 @@ from ..settings import ENEMY_SHEETS, FRAME_WIDTH, DEFAULT_SCALE, GROUND_Y
 
 class Enemy(Character):
     """
-    Враг со state-машиной в стиле твоего монолита:
+    Враг со state-машиной:
     - флаги is_attacking / is_blocking / is_hurt / is_dead / is_jumping
     - тайминги в миллисекундах (attack_cooldown, animation_speed)
     - урон наносится на кадре №2 текущей атаки
