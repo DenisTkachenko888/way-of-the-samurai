@@ -1,7 +1,26 @@
-* text=auto eol=lf
+# --- Text normalization ---
+* text=auto
+
+# Force LF for source and docs 
+*.py    text eol=lf
+*.md    text eol=lf
+*.toml  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.txt   text eol=lf
+
+# --- Binary files ---
 *.png binary
 *.jpg binary
+*.jpeg binary
 *.gif binary
+*.webp binary
+*.ico binary
+
+*.wav binary
 *.ogg binary
 *.mp3 binary
+*.flac binary
+
 *.ttf binary
+*.otf binary
