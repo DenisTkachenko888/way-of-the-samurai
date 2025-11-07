@@ -1,6 +1,5 @@
 # Way Of The Samurai
 
-[![CI](https://github.com/DenisTkachenko888/way-of-the-samurai/actions/workflows/ci.yml/badge.svg)](../../actions)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.12%2B-yellow)
 
@@ -8,46 +7,44 @@
   <img src="assets/docs/demo.gif" width="900" alt="Way Of The Samurai — gameplay demo">
 </p>
 
-Way Of The Samurai is a 2D beat ’em up / belt-scroller focused on close combat and positional control.  
-The project is implemented in Python using Pygame and is built with a modular architecture (scenes, camera, entities, animations).
+**Way Of The Samurai** is a 2D beat ’em up / belt-scroller focused on close combat and positional control.  
+The game is built with **Python + Pygame** and a modular structure (scenes, camera, entities, animations).
 
-The current version includes a controllable player character (samurai), basic melee combat, an enemy, a following camera, and an in-game HUD.
+The current build includes a controllable player (samurai), a basic melee system, an enemy, a following camera, and an in-game HUD.
 
 ---
 
 ## Core Features
 
 ### Player
-- Movement along the horizontal axis and along the “combat lane” (classic belt-scroller movement depth).
+- Horizontal movement + depth along the classic belt-scroller “lane”.
 - Sprint / accelerated movement.
 - Jump.
-- Guard (reduced incoming damage).
-- Three distinct sword attacks with separate animations and timed damage windows.
-- Hit reaction state and death state.
-- Directional facing and sprite flipping.
+- Guard (reduces incoming damage).
+- Three distinct sword attacks with individual animations and timed hit windows.
+- Hit reaction and death states.
+- Directional facing with sprite flipping.
 
 ### Enemies
 - Take damage from player attacks.
-- Counted and displayed in the on-screen HUD.
+- Counted and displayed in the HUD.
 
 ### Combat Feedback
-- Hit detection is tied to specific animation frames.
-- Short hitstop on successful hits to improve combat readability and weight.
-- Impact feedback without excessive full-screen shaking.
+- Hit detection tied to specific animation frames.
+- Short **hitstop** on successful hits to improve readability and weight.
+- Impact feedback without intrusive full-screen shake.
 
 ### Camera & Playfield
-- Camera follows the player.
-- World bounds prevent the camera from leaving the level area.
-- Movement is restricted to a defined walkable area: the character can only move and land within a predefined rectangular “lane.”  
-  This reproduces classic belt-scroller behavior — the player cannot walk “into the water” or float outside the fight space.
+- Camera follows the player and stays within level bounds.
+- Movement restricted to a defined **walkable area** (rectangular “lane”); feet-based checks prevent walking “into the water” or outside the fight strip.
 
 ### Interface
 - Player health bar.
 - Enemy counter.
-- In-game pause / exit confirmation via an overlay dialog:
+- In-game pause / exit confirmation:
   - `Esc` — open confirmation dialog.
-  - `Y` — exit the game.
-  - `N` — return to gameplay.
+  - `Y` — exit.
+  - `N` — resume.
 
 ---
 
@@ -63,52 +60,16 @@ The current version includes a controllable player character (samurai), basic me
 
 ---
 
-## Architecture
-
-The project is structured like a small game rather than a single monolithic script.
-
-**Key components:**
-
-- `scene manager`  
-  Handles different screens (main menu, gameplay). This allows the game to grow without rewriting the main loop.
-
-- `gameplay scene`  
-  Core combat logic, player/enemy state updates, HUD rendering.
-
-- `menu scene`  
-  Entry screen and transition into gameplay.
-
-- `camera`  
-  A following camera that centers on the player and stays within the level bounds.
-
-- `entities`  
-  Player, enemies, shared character base class, and character stats.
-
-- `animation system`  
-  Frame-based animations for states such as:  
-  `idle`, `walk`, `run`, `jump`, `hurt`, `dead`, `protect` (guard), and `attack1`, `attack2`, `attack3`.
-
-- `walkable area`  
-  Explicit rectangular lane that defines where the character is allowed to move and land.  
-  Movement is validated using the character’s “feet” position to reproduce traditional beat ’em up depth restriction.
-
-- `hud`  
-  Minimal in-game UI (health bar, enemy counter).
-
-This structure is intended to support future expansion: additional enemy types, enemy waves, multiple areas, player progression, etc.
-
----
-
-## Running the Game
+## Quick Start
 
 Requirements:
-- Python 3.12+
-- Pygame 2.x
+- Python **3.12+**
+- Pygame **2.x**
 
-Setup and launch:
+Clone & run:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/way-of-the-samurai.git
+git clone https://github.com/DenisTkachenko888/way-of-the-samurai.git
 cd way-of-the-samurai
 
 # (optional) create a virtual environment
@@ -119,34 +80,81 @@ python -m venv .venv
 # Linux / macOS:
 source .venv/bin/activate
 
-pip install pygame
+# install dependencies
+pip install -r requirements.txt   # falls back to `pip install pygame` if needed
 
+# run
 cd src
 python -m game.main
 ```
 
+After launch:
+1) The main menu appears.  
+2) Press **Enter** to start gameplay.
+
 ---
 
-## After launch
+## Architecture
 
-1. The main menu will appear.  
-2. Press **Enter** to start gameplay.
+The project is structured like a small game, not a single script.
+
+- **Scene manager** — handles screens (menu, gameplay) without touching the main loop.  
+- **Gameplay scene** — combat, player/enemy updates, HUD rendering.  
+- **Menu scene** — entry screen and transition to gameplay.  
+- **Camera** — follows the player within world bounds.  
+- **Entities** — player, enemies, base character class, stats.  
+- **Animation system** — frame-based states: `idle`, `walk`, `run`, `jump`, `hurt`, `dead`, `protect` (guard), `attack1..3`.  
+- **Walkable area** — explicit rectangular lane validated via character “feet”.  
+- **HUD** — health bar, enemy counter.
+
+This layout supports future growth (additional enemies, waves, areas, progression, etc.).
+
+---
+
+## Assets
+
+**Character and enemy sprite sheets are not distributed** in this repository due to third-party licensing.  
+To run locally, download the **free samurai sprite sheets** from CraftPix and place PNGs into these folders:
+
+- Free samurai sprite sheets (CraftPix):  
+  https://craftpix.net/freebies/free-samurai-pixel-art-sprite-sheets/
+
+Expected directories:
+```
+assets/images/sprites/samurai_sprites/
+assets/images/sprites/enemy_sprites/
+```
+
+Expected file names (you can adjust in `src/game/settings.py`):
+```
+Idle.png
+Walk.png
+Run.png
+Jump.png
+Attack_1.png
+Attack_2.png
+Attack_3.png
+Protection.png  (enemy set may use Protect.png)
+Hurt.png
+Dead.png
+```
+
+> Background (`assets/images/backgrounds/level1.png`) and the demo GIF (`assets/docs/demo.gif`) are included to keep the repository runnable and demonstrative.  
+> See `ATTRIBUTION.md` and `ASSETS_LICENSE.md` for notes and licensing details.
 
 ---
 
 ## Roadmap
 
-Planned next steps:
-
-1. Dodge / roll with brief invulnerability frames (i-frames).  
-2. Enemy AI (approach, pressure, close-range attacks, flanking behavior).  
-3. Parallax background and scrolling level.  
-4. Enemy wave / zone clear logic.  
-5. Collectible items / artifacts (lore objects, light progression elements).
+1. **Dodge / roll** with brief i-frames.  
+2. **Enemy AI** (approach, pressure, melee patterns, flanking).  
+3. **Parallax background** and scrolling level.  
+4. **Enemy waves / zone clear** flow.  
+5. **Collectibles / artifacts** (lore & light progression).
 
 ---
 
 ## License
 
-This project is distributed under the **MIT License**.  
+Distributed under the **MIT License**.  
 See [`LICENSE`](LICENSE) for details.
