@@ -8,11 +8,6 @@
   <img src="assets/docs/demo.gif" width="900" alt="Way Of The Samurai — gameplay demo">
 </p>
 
-
-<p align="center">
-  <img src="assets/docs/demo.gif" width="900" alt="Way Of The Samurai — gameplay demo">
-</p>
-
 Way Of The Samurai is a 2D beat ’em up / belt-scroller focused on close combat and positional control.  
 The project is implemented in Python using Pygame and is built with a modular architecture (scenes, camera, entities, animations).
 
