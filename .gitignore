@@ -1,34 +1,33 @@
-# Byte-compiled / cache
+# ---- Byte-compiled / cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Virtual environments
+# ---- Virtual environments
 .venv/
 venv/
 env/
 
-# OS / file manager junk
+# ---- OS / file manager junk
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# IDE configs
+# ---- IDE configs
 .vscode/
 .idea/
 
-# screenshots / temp exports / recordings
-*.bmp
-*.png
-*.jpg
-*.gif
-*.mp4
-
-# pytest / coverage 
+# ---- Pytest / coverage
 .coverage
 .pytest_cache/
 htmlcov/
 
-!assets/docs/
-!assets/docs/*.gif
+
+assets/images/sprites/samurai_sprites/**
+assets/images/sprites/enemy_sprites/**
+
+# Keep docs and placeholders
+!assets/docs/**
+!assets/README_assets.md
+!assets/**/.keep
