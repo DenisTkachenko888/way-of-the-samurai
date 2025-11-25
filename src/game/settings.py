@@ -1,46 +1,51 @@
 from pathlib import Path
 import pygame
 
-# --- Paths ---------------------------------------------------------------
-BASE_DIR = Path(__file__).resolve().parent               # .../src/game
-PROJECT_ROOT = BASE_DIR.parent.parent                    # репозиторий корень
+# === Paths ===================================================================
+BASE_DIR = Path(__file__).resolve().parent            # .../src/game
+PROJECT_ROOT = BASE_DIR.parent.parent                 # корень репозитория
 ASSETS_DIR = PROJECT_ROOT / "assets"
 
-# Фон уровня (убедись, что файл действительно называется level1.png)
+# Фон уровня (убедись, что реально существует этот файл)
 BACKGROUND_FILE = ASSETS_DIR / "images" / "backgrounds" / "level1.png"
 
-# --- Window & timing -----------------------------------------------------
+# === Window & timing =========================================================
 SCREEN_WIDTH = 900
 SCREEN_HEIGHT = 600
 FPS = 60
 
-# --- World / Walkable area ----------------------------------------------
-# Приземление игрока идёт на walkable_area.bottom — делаем низ зоны ровно 600.
-GROUND_Y = 600
+# === World / Walkable area ===================================================
+# Приземление идёт на WALKABLE_AREA.bottom, который привязан к "земле".
+GROUND_Y = 600  # нижняя линия "земли" (экранный низ)
+
+# Дорожка belt-scroller. Чтобы верх остался как раньше (~y=550), берём высоту 50.
+WALKABLE_MARGIN_X = 20
+WALKABLE_HEIGHT = 50  # было ощущение «ниже» — уменьшаем высоту, верх = 600-50 = 550
+
 WALKABLE_AREA = pygame.Rect(
-    20,   # left
-    480,  # top (верх берега/дорожки)
-    820,  # width
-    120   # height -> 480 + 120 = 600 (низ зоны = земля)
+    WALKABLE_MARGIN_X,
+    GROUND_Y - WALKABLE_HEIGHT,              # верх = земля минус высота дорожки
+    SCREEN_WIDTH - 2 * WALKABLE_MARGIN_X,    # ширина с полями слева/справа
+    WALKABLE_HEIGHT,
 )
 
-# Дополнительный горизонтальный запас (если нужен кламп по X у врагов/камеры)
+# Запас по X для клампа врагов/камеры (если используешь)
 PLAYFIELD_MARGIN_X = 64
 
-# --- Colors / UI ---------------------------------------------------------
+# === Colors / UI =============================================================
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 200, 0)
 
-# Вернули UI-константы, которые импортирует gameplay.py (даже если сейчас не все используются)
+# Константы UI (некоторые могут не использоваться прямо сейчас, оставим для совместимости)
 UI_BTN_SIZE = (36, 28)
 UI_GAP = 8
-UI_BG = (230, 235, 239)   # фон старой панели/бэкграунд очистки
+UI_BG = (230, 235, 239)
 UI_RED = (245, 82, 82)
 UI_DARK = (35, 38, 41)
 
-# --- Sprites / Sheets ----------------------------------------------------
+# === Sprites / Sheets ========================================================
 # Фактическая структура:
 # assets/images/sprites/samurai_sprites/*.png
 # assets/images/sprites/enemy_sprites/*.png
@@ -54,7 +59,7 @@ SAMURAI_SHEETS = {
     "attack1":  SAMURAI_DIR / "Attack_1.png",
     "attack2":  SAMURAI_DIR / "Attack_2.png",
     "attack3":  SAMURAI_DIR / "Attack_3.png",
-    "protect":  SAMURAI_DIR / "Protection.png",  # проверь точное имя файла
+    "protect":  SAMURAI_DIR / "Protection.png",  # проверь точное имя
     "hurt":     SAMURAI_DIR / "Hurt.png",
     "dead":     SAMURAI_DIR / "Dead.png",
     "climb":    SAMURAI_DIR / "Climb.png",
@@ -69,11 +74,11 @@ ENEMY_SHEETS = {
     "attack1":  ENEMY_DIR / "Attack_1.png",
     "attack2":  ENEMY_DIR / "Attack_2.png",
     "attack3":  ENEMY_DIR / "Attack_3.png",
-    "protect":  ENEMY_DIR / "Protect.png",       # проверь точное имя файла
+    "protect":  ENEMY_DIR / "Protect.png",       # у врага часто "Protect.png"
     "hurt":     ENEMY_DIR / "Hurt.png",
     "dead":     ENEMY_DIR / "Dead.png",
 }
 
-# --- Sprite slicing defaults --------------------------------------------
+# === Sprite slicing defaults =================================================
 FRAME_WIDTH = 128
 DEFAULT_SCALE = 2
