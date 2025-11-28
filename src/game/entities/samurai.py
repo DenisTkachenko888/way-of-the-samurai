@@ -102,7 +102,7 @@ class Samurai(Character):
                 frames = slice_sheet(sheet, FRAME_WIDTH, self.scale)
                 self.animations[key] = Animation(
                     frames,
-                    ms_per_frame=120,
+                    ms_per_frame=120,  # одинаковая скорость для всех, включая attack2
                     loop=(key not in {"dead", "hurt", "attack1", "attack2", "attack3"}),
                 )
 
@@ -135,8 +135,12 @@ class Samurai(Character):
         """Атаки разрешены и в воздухе; не прерываем текущую атаку до конца."""
         if self.is_dead or kind not in ("attack1", "attack2", "attack3"):
             return
-        if self.current in ("attack1", "attack2", "attack3") and not self.animations[self.current].finished():
+        if (
+            self.current in ("attack1", "attack2", "attack3")
+            and not self.animations[self.current].finished()
+        ):
             return
+
         self.set_state(kind, reset=True)
         self.last_attack_name = kind
 
@@ -188,10 +192,10 @@ class Samurai(Character):
         self,
         dt: float,
         input_dir=(0, 0),
-        running=False,
-        jump_pressed=False,
-        jump_held=False,
-        jump_released=False,
+        running: bool = False,
+        jump_pressed: bool = False,
+        jump_held: bool = False,
+        jump_released: bool = False,
     ):
         dx, dy = input_dir
 
@@ -283,7 +287,7 @@ class Samurai(Character):
             if prev_index < hit_frame <= anim.index:
                 self._apply_attack_damage(damage)
 
-        # выход из атаки после окончания анимации
+        # простой выход из атаки после окончания анимации (одинаковый для 1/2/3)
         if (
             self.current in ("attack1", "attack2", "attack3")
             and self.animations[self.current].finished()
