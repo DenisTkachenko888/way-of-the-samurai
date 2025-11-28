@@ -174,7 +174,7 @@ class GameplayScene:
             jump_pressed=jump_pressed,
             jump_held=jump_now,
             jump_released=jump_released,
-        )
+            )
 
         # ENEMIES UPDATE:
         # Врагов ограничиваем только по X, не трогаем им вертикаль.
