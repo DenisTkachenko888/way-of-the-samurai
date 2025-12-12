@@ -23,10 +23,6 @@ desktop.ini
 .pytest_cache/
 htmlcov/
 
-
-assets/images/sprites/samurai_sprites/**
-assets/images/sprites/enemy_sprites/**
-
 # Keep docs and placeholders
 !assets/docs/**
 !assets/README_assets.md
@@ -34,3 +30,8 @@ assets/images/sprites/enemy_sprites/**
 
 # Python packaging / build artifacts
 *.egg-info/
+
+# Third-party sprites (kept out of repo; bundled in release builds)
+assets/images/sprites/samurai_sprites/*.png
+assets/images/sprites/enemy_sprites/*.png
+

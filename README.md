@@ -1,7 +1,6 @@
 # Way Of The Samurai
 
 ![CI](https://github.com/DenisTkachenko888/way-of-the-samurai/actions/workflows/ci.yml/badge.svg)
-
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.12%2B-yellow)
 
@@ -38,7 +37,7 @@ The current build includes a controllable player (samurai), a basic melee system
 
 ### Camera & Playfield
 - Camera follows the player and stays within level bounds.
-- Movement restricted to a defined **walkable area** (rectangular “lane”); feet-based checks prevent walking “into the water” or outside the fight strip.
+- Movement restricted to a defined **walkable area** (rectangular “lane”); feet-based checks prevent walking outside the fight strip.
 
 ### Interface
 - Player health bar.
@@ -62,7 +61,38 @@ The current build includes a controllable player (samurai), a basic melee system
 
 ---
 
-## Quick Start
+## Assets
+
+This project uses third-party sprite assets (Craftpix freebies).
+
+✅ **For players (recommended):** download the ready-to-run Windows demo from **GitHub Releases** — assets are bundled, no Python setup needed.
+
+🛠️ **For developers:** download the sprites from Craftpix and place PNGs into:
+- `assets/images/sprites/samurai_sprites/`
+- `assets/images/sprites/enemy_sprites/`
+
+Craftpix Freebies (samurai sprite sheets):  
+https://craftpix.net/freebies/free-samurai-pixel-art-sprite-sheets/
+
+Expected file names (can be adjusted in `src/game/settings.py`):
+```
+Idle.png
+Walk.png
+Run.png
+Jump.png
+Attack_1.png
+Attack_2.png
+Attack_3.png
+Protection.png  (enemy set may use Protect.png)
+Hurt.png
+Dead.png
+```
+
+See `ASSETS_LICENSE.md` for detailed licensing terms and restrictions.
+
+---
+
+## Quick Start (developers)
 
 Requirements:
 - Python **3.12+**
@@ -83,7 +113,7 @@ python -m venv .venv
 source .venv/bin/activate
 
 # install dependencies
-pip install -r requirements.txt   # falls back to `pip install pygame` if needed
+pip install -e .
 
 # run
 cd src
@@ -110,39 +140,6 @@ The project is structured like a small game, not a single script.
 - **HUD** — health bar, enemy counter.
 
 This layout supports future growth (additional enemies, waves, areas, progression, etc.).
-
----
-
-## Assets
-
-**Character and enemy sprite sheets are not distributed** in this repository due to third-party licensing.  
-To run locally, download the **free samurai sprite sheets** from CraftPix and place PNGs into these folders:
-
-- Free samurai sprite sheets (CraftPix):  
-  https://craftpix.net/freebies/free-samurai-pixel-art-sprite-sheets/
-
-Expected directories:
-```
-assets/images/sprites/samurai_sprites/
-assets/images/sprites/enemy_sprites/
-```
-
-Expected file names (you can adjust in `src/game/settings.py`):
-```
-Idle.png
-Walk.png
-Run.png
-Jump.png
-Attack_1.png
-Attack_2.png
-Attack_3.png
-Protection.png  (enemy set may use Protect.png)
-Hurt.png
-Dead.png
-```
-
-> Background (`assets/images/backgrounds/level1.png`) and the demo GIF (`assets/docs/demo.gif`) are included to keep the repository runnable and demonstrative.  
-> See `ATTRIBUTION.md` and `ASSETS_LICENSE.md` for notes and licensing details.
 
 ---
 

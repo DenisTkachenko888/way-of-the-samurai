@@ -1,19 +1,24 @@
 # Third-Party Assets — Licensing Notice
 
-This repository **does not** include third-party sprite sources.  
-To run locally, download free samurai sprites from CraftPix and place PNGs into:
+This project uses third-party sprite assets from **Craftpix Freebies**.
 
-assets/images/sprites/samurai_sprites/
-assets/images/sprites/enemy_sprites/
+**Repository policy:** sprite PNG source files may be omitted from this repository to avoid redistributing raw third-party assets.  
+**Release builds:** playable demo/game builds bundle required assets as part of the game so players can run it immediately.
 
+## Craftpix Freebie License summary (as provided by Craftpix)
 
-CraftPix freebies (samurai):  
-https://craftpix.net/freebies/free-samurai-pixel-art-sprite-sheets/
+Allowed:
+- Use the resources in any number of personal and commercial projects (for yourself or a client).
+- Modify the resources and include them into works such as game projects, websites, applications, printed materials and others.
+- Sell and distribute games with Craftpix assets.
+- No attribution or link back is required (credit is appreciated).
 
-## Important
-- You **may** use the downloaded sprites in your local builds and in your games, subject to the CraftPix license terms applicable to the specific asset pack.
-- You **must not** re-upload or redistribute the original sprite source files (PNG/PSD/AI/EPS/etc.) in this repository or as a standalone asset pack.
-- File names and locations referenced by the game can be adjusted in `src/game/settings.py`.
+Forbidden:
+- Do NOT resell or redistribute the art source files (PNG/JPG/etc.) or slightly modified versions of the art.
+- Do NOT redistribute the art (or modified art) in a manner that would make some or all of the art files usable to another end user via the app.
+  - Example: a game that uses the art as part of gameplay is fine.
+  - Example: an app that allows the user to save/export the artwork itself is not fine.
+- Do NOT distribute the graphics separately from your product in any form.
 
-The **code** in this repository is licensed under MIT (see `LICENSE`).  
-This document is a practical notice and **not** a substitute for the original CraftPix license; always review the license on the asset page.
+The code in this repository is licensed under MIT (see `LICENSE`).
+This document is a practical notice and not a substitute for the original Craftpix license terms.
