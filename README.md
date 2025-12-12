@@ -1,10 +1,12 @@
 # Way Of The Samurai
 
+![CI](https://github.com/DenisTkachenko888/way-of-the-samurai/actions/workflows/ci.yml/badge.svg)
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.12%2B-yellow)
 
 <p align="center">
-  <img src="assets/docs/demo.gif" width="900" alt="Way Of The Samurai — gameplay demo">
+  <img src="assets/docs/demo_small.gif" width="900" alt="Way Of The Samurai — gameplay demo">
 </p>
 
 **Way Of The Samurai** is a 2D beat ’em up / belt-scroller focused on close combat and positional control.  
