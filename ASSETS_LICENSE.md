@@ -16,4 +16,4 @@ https://craftpix.net/freebies/free-samurai-pixel-art-sprite-sheets/
 - File names and locations referenced by the game can be adjusted in `src/game/settings.py`.
 
 The **code** in this repository is licensed under MIT (see `LICENSE`).  
-This document is a practical notice and **not** a substitute for the original CraftPix license; always review the license on th
+This document is a practical notice and **not** a substitute for the original CraftPix license; always review the license on the asset page.

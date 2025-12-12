@@ -31,3 +31,6 @@ assets/images/sprites/enemy_sprites/**
 !assets/docs/**
 !assets/README_assets.md
 !assets/**/.keep
+
+# Python packaging / build artifacts
+*.egg-info/
