@@ -1,12 +1,24 @@
 from pathlib import Path
+import sys
+
 import pygame
 
+
 # === Paths ===================================================================
-BASE_DIR = Path(__file__).resolve().parent            # .../src/game
-PROJECT_ROOT = BASE_DIR.parent.parent                 # корень репозитория
+BASE_DIR = Path(__file__).resolve().parent  # .../src/game
+
+def get_project_root() -> Path:
+    """
+    Source run: repo_root (…/src/game -> parents[2])
+    Frozen (PyInstaller): directory where the .exe lives (assets рядом с exe)
+    """
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return BASE_DIR.parents[2]  # repo_root
+
+PROJECT_ROOT = get_project_root()
 ASSETS_DIR = PROJECT_ROOT / "assets"
 
-# Фон уровня (убедись, что реально существует этот файл)
 BACKGROUND_FILE = ASSETS_DIR / "images" / "backgrounds" / "level1.png"
 
 # === Window & timing =========================================================
@@ -59,10 +71,9 @@ SAMURAI_SHEETS = {
     "attack1":  SAMURAI_DIR / "Attack_1.png",
     "attack2":  SAMURAI_DIR / "Attack_2.png",
     "attack3":  SAMURAI_DIR / "Attack_3.png",
-    "protect":  SAMURAI_DIR / "Protection.png",  # проверь точное имя
+    "protect":  SAMURAI_DIR / "Protection.png",  
     "hurt":     SAMURAI_DIR / "Hurt.png",
     "dead":     SAMURAI_DIR / "Dead.png",
-    "climb":    SAMURAI_DIR / "Climb.png",
 }
 
 ENEMY_DIR = ASSETS_DIR / "images" / "sprites" / "enemy_sprites"
@@ -74,7 +85,7 @@ ENEMY_SHEETS = {
     "attack1":  ENEMY_DIR / "Attack_1.png",
     "attack2":  ENEMY_DIR / "Attack_2.png",
     "attack3":  ENEMY_DIR / "Attack_3.png",
-    "protect":  ENEMY_DIR / "Protect.png",       # у врага часто "Protect.png"
+    "protect":  ENEMY_DIR / "Protect.png",       
     "hurt":     ENEMY_DIR / "Hurt.png",
     "dead":     ENEMY_DIR / "Dead.png",
 }
