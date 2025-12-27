@@ -35,3 +35,25 @@ htmlcov/
 assets/images/sprites/samurai_sprites/*.png
 assets/images/sprites/enemy_sprites/*.png
 
+# ---- PyInstaller
+build/
+dist/
+*.spec
+
+# ---- Packaging / tooling caches
+.pybuild/
+.eggs/
+pip-wheel-metadata/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage.*
+coverage.xml
+
+# ---- Local release artifacts
+*.zip
+*.exe
+
+# ---- Logs
+*.log
