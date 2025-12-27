@@ -35,10 +35,13 @@ htmlcov/
 assets/images/sprites/samurai_sprites/*.png
 assets/images/sprites/enemy_sprites/*.png
 
-# ---- PyInstaller
+# ---- PyInstaller / release artifacts
 build/
 dist/
+_release_test/
 *.spec
+*.zip
+*.exe
 
 # ---- Packaging / tooling caches
 .pybuild/
