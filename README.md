@@ -97,6 +97,8 @@ See `ASSETS_LICENSE.md` for detailed licensing terms and restrictions.
 Requirements:
 - Python **3.12+**
 - Pygame **2.x**
+- pytest
+
 
 Clone & run:
 
@@ -107,17 +109,16 @@ cd way-of-the-samurai
 # (optional) create a virtual environment
 python -m venv .venv
 
-# Windows:
-.venv\Scripts\activate
-# Linux / macOS:
-source .venv/bin/activate
+# Windows (PowerShell):
+.\.venv\Scripts\Activate.ps1
+# Windows (cmd):
+.venv\Scripts\activate.bat
 
 # install dependencies
 pip install -e .
 
-# run
-cd src
-python -m game.main
+# run (from repo root)
+python run_game.py
 ```
 
 After launch:
