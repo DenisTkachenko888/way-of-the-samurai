@@ -1,6 +1,6 @@
-# run_game.py
-import runpy
+from __future__ import annotations
+
+from game.main import main
 
 if __name__ == "__main__":
-    # эквивалент: python -m game.main
-    runpy.run_module("game.main", run_name="__main__")
+    main()

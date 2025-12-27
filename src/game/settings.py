@@ -7,17 +7,41 @@ import pygame
 # === Paths ===================================================================
 BASE_DIR = Path(__file__).resolve().parent  # .../src/game
 
-def get_project_root() -> Path:
+def resolve_assets_dir() -> Path:
     """
-    Source run: repo_root (…/src/game -> parents[2])
-    Frozen (PyInstaller): directory where the .exe lives (assets рядом с exe)
+    Priority:
+    1) Frozen (PyInstaller): _internal/assets or sys._MEIPASS/assets or exe/assets
+    2) Dev/source: repo_root/assets
+    Fallback: repo_root/assets (even if missing) — do not crash on import.
     """
+    # --- Frozen builds first (so packaged exe uses bundled files, not your repo files) ---
     if getattr(sys, "frozen", False):
-        return Path(sys.executable).resolve().parent
-    return BASE_DIR.parents[2]  # repo_root
+        exe_dir = Path(sys.executable).resolve().parent
 
-PROJECT_ROOT = get_project_root()
-ASSETS_DIR = PROJECT_ROOT / "assets"
+        internal_assets = exe_dir / "_internal" / "assets"
+        if internal_assets.exists():
+            return internal_assets
+
+        meipass = getattr(sys, "_MEIPASS", None)
+        if meipass:
+            meipass_assets = Path(meipass) / "assets"
+            if meipass_assets.exists():
+                return meipass_assets
+
+        exe_assets = exe_dir / "assets"
+        if exe_assets.exists():
+            return exe_assets
+
+    # --- Dev/source ---
+    repo_root = BASE_DIR.parents[1]          # .../src/game -> .../src -> repo_root
+    repo_assets = repo_root / "assets"
+    if repo_assets.exists():
+        return repo_assets
+
+    # --- Last resort: don't break pytest import ---
+    return repo_assets
+
+ASSETS_DIR = resolve_assets_dir()
 
 BACKGROUND_FILE = ASSETS_DIR / "images" / "backgrounds" / "level1.png"
 
